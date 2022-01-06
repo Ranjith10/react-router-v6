@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+  height: 60px;
+  align-items: center;
+  background-color: bisque;
+}
+.app-title {
+  margin: 0 20px;
+  font-size: 20px;
+}
+.header > a {
+  margin: 0 20px 0 0 ;
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+}
