@@ -1,8 +1,9 @@
-import { Link, Route, Routes } from 'react-router-dom';
+import { NavLink, Outlet, Route, Routes } from 'react-router-dom';
 
 import LandingPage from './Components/LandingPage';
-import './App.css';
 import Expenses from './Components/Expenses';
+import Invoices from './Components/Invoices';
+import './App.css';
 
 //*Use <Route children> rather than <Router component> and <Router render>
 //*Replace all <Switch> elements to <Routes>
@@ -14,15 +15,26 @@ function App() {
     return (
         <div className="App">
             <div className='header'>
+                {/*
+                    //* className and activeClassName deprecated
+                    //* Use isActive attr to style links
+                */}
                 <span className='app-title'>React Router v6</span>
-                <Link to = '/'>Home</Link>
-                <Link to = '/expenses'>Expenses</Link>
-                <Link to = '/invoices'>Invoices</Link>
+                <NavLink 
+                    className = {({isActive}) => isActive ? 'active nav-link' : 'nav-link'}
+                    to = '/'
+                >
+                    Home
+                </NavLink>
+                <NavLink className = {({isActive}) => isActive ? 'active nav-link' : 'nav-link'} to = '/expenses'>Expenses</NavLink>
+                <NavLink className = {({isActive}) => isActive ? 'active nav-link' : 'nav-link'} to = '/invoices'>Invoices</NavLink>
             </div>
             <Routes>
-                <Route path = '/' exact element = {<LandingPage />} />
-                <Route path='/expenses' element = {<Expenses />} /> 
+                <Route path = '/' element = {<LandingPage />} />
+                <Route path='expenses' element = {<Expenses />} />
+                <Route path='invoices' element = {<Invoices />} />
             </Routes> 
+            <Outlet />
         </div>
     );
 }
