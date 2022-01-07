@@ -12,6 +12,9 @@ import './Layout.css'
 //* Use isActive attr to style links
 
 const Layout = () => {
+
+    let linkStyle = ({isActive}) => isActive ? 'active nav-link' : 'nav-link'
+
     return (
         <>
             <div className='header'>
@@ -22,8 +25,9 @@ const Layout = () => {
                 >
                     Home
                 </NavLink>
-                <NavLink className = {({isActive}) => isActive ? 'active nav-link' : 'nav-link'} to = '/expenses'>Expenses</NavLink>
-                <NavLink className = {({isActive}) => isActive ? 'active nav-link' : 'nav-link'} to = '/invoices'>Invoices</NavLink>
+                <NavLink className = {linkStyle} to = '/expenses'>Expenses</NavLink>
+                <NavLink className = {linkStyle} to = '/invoices'>Invoices</NavLink>
+                <NavLink className = {linkStyle} to = '/users'>Users</NavLink>
             </div>
             <div className='content-wrapper'>
                 <Outlet />
