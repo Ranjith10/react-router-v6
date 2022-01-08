@@ -1,4 +1,5 @@
-import { Route, Routes } from 'react-router-dom';
+import { useState } from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import LandingPage from './Components/LandingPage';
 import Expenses from './Components/Expenses';
@@ -22,10 +23,18 @@ import './App.css';
 
 function App() {
 
-    let users = [
+    let usersList = [
         { id: '1', fullName: 'Tobey Maguire' },
         { id: '2', fullName: 'Tom Harris' },
     ]
+
+    const [users, setUsers] = useState(usersList) 
+    const navigate = useNavigate()
+
+    let handleRemoveUser = (userId) => {
+        setUsers((state) => state.filter((user) => user.id !== userId))
+        navigate('/users')
+    }
 
     return (
         <div className="App">
@@ -35,8 +44,9 @@ function App() {
                     <Route path = 'home' element = {<LandingPage />} />
                     <Route path = 'expenses' element = {<Expenses />} />
                     <Route path = 'invoices' element = {<Invoices />} />
-                    <Route path = 'users' element = {<Users users = {users}  />}>
-                        <Route path = ':userId' element = {<User />} />
+                    <Route path = 'users'>
+                        <Route index element = {<Users users = {users}  />} />
+                        <Route path = ':userId' element = {<User onRemoveUser = {handleRemoveUser} />} />
                     </Route>
                 </Route>
                 <Route path = '*' element = {<NoMatch />} />
