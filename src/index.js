@@ -6,11 +6,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import './index.css';
+import AppConfigured from './AppConfigured';
 
 ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
-            <App />
+            {/* <App /> */}
+            <AppConfigured />
         </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
